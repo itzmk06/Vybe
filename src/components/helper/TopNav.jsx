@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "../../utils/axios";
 import noimage from "/public/noimage.webp";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RiArrowUpSLine } from "react-icons/ri";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -13,6 +13,7 @@ function TopNav() {
   const [searches, setSearches] = useState([]);
   const searchResultsRef = useRef(null);
   const searchInputRef = useRef(null);
+  const location = useLocation();
 
   const getSearches = async () => {
     try {
@@ -59,9 +60,13 @@ function TopNav() {
     }
   }, [searches]);
 
+  if (location.pathname !== '/' && window.innerWidth < 640) {
+    return null;
+  }
+
   return (
-    <div className="w-full h-[10vh] p-2 relative z-[1]">
-      <div className="text-xl flex justify-start items-center gap-2 bg-[#252833] w-[70%] h-[7vh] m-auto rounded-lg">
+    <div className="w-full h-[10vh] p-2 relative z-[1] sm:block">
+      <div className="text-xl flex justify-start items-center gap-2 bg-[#252833] w-full md:w-[70%] h-[7vh] m-auto rounded-lg">
         <i className="ri-search-line text-[#009FFD] ml-2 text-xl"></i>
         <input
           ref={searchInputRef}
@@ -69,7 +74,7 @@ function TopNav() {
           value={query}
           type="text"
           placeholder="Movies, Shows and More"
-          className="w-[90%] font-bold bg-transparent px-2 py-2 border-none outline-none text-white text-[1.1rem]"
+          className="w-[80%] md:w-[90%] font-bold bg-transparent px-2 py-2 border-none outline-none text-white text-[1.1rem]"
         />
         {query.length > 0 && (
           <i
@@ -82,7 +87,7 @@ function TopNav() {
       {searches.length > 0 && (
         <div
           ref={searchResultsRef}
-          className="mt-[-0.5%] z-[999] absolute overflow-auto w-[69%] max-h-[48vh] bg-zinc-500 top-[100%] translate-x-[21.5%] rounded-b-lg"
+          className="mt-1 z-[999] absolute overflow-auto w-full md:w-[69%] max-h-[48vh] bg-zinc-500 top-[100%] left-0 md:translate-x-[21.5%] rounded-b-lg"
         >
           {searches.map((s, i) => (
             <Link
@@ -91,7 +96,7 @@ function TopNav() {
               className="duration-300 border-b-2 hover:bg-zinc-300 bg-zinc-400 flex w-full h-1/3 text-sm font-semibold p-1 flex-start"
             >
               <img
-                className="rounded-lg m-1 p-1 object-cover object-top w-[10vw] h-[12vw] shadow-sm shadow-black"
+                className="rounded-lg m-1 p-1 object-cover object-top w-[20vw] md:w-[10vw] h-[20vw] md:h-[12vw] shadow-sm shadow-black"
                 src={
                   s.poster_path
                     ? `https://image.tmdb.org/t/p/original/${s.poster_path}`

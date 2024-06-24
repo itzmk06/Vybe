@@ -138,7 +138,7 @@ const TvDetails = () => {
           </p>
           <Link
             to={`/tv/details/${info.detail.id}/trailer`}
-            className="inline-flex items-center gap-1 px-4 py-2 mt-4 text-blue-500 bg-gray-800 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
+            className="font-semibold inline-flex items-center gap-1 px-4 py-2 mt-4 text-blue-500 bg-gray-800 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
           >
             <i className="ri-play-circle-fill text-2xl"></i>Watch Trailer
           </Link>
