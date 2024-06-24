@@ -222,7 +222,7 @@ const LoginPage = () => {
       >
         <div className="bg-[#252833] bg-opacity-40 backdrop-blur-xs p-10 rounded-3xl shadow-2xl text-white max-w-md w-full space-y-8">
           <img
-            src="public/logo.svg"
+            src="logo.svg"
             alt="Logo"
             className="mx-auto w-[3rem] h-auto mb-6"
             ref={logoRef}
