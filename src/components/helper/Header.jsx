@@ -15,7 +15,7 @@ const Header = ({ data }) => {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    if (headerRef.current && titleRef.current && descriptionRef.current && buttonRef.current) {
+    if (headerRef.current && titleRef.current && descriptionRef.current && buttonRef.current && data) {
       tl.fromTo(
         headerRef.current,
         { opacity: 0, scale: 0.95 },
@@ -46,7 +46,6 @@ const Header = ({ data }) => {
         '-=0.8'
       );
 
-
       buttonRef.current.addEventListener('mouseenter', () => {
         gsap.to(buttonRef.current, { scale: 1.05, duration: 0.3, ease: 'power3.out' });
       });
@@ -54,13 +53,11 @@ const Header = ({ data }) => {
         gsap.to(buttonRef.current, { scale: 1, duration: 0.3, ease: 'power3.out' });
       });
 
-
       gsap.to(headerRef.current, {
         backgroundPositionX: '50%',
         duration: 2,
         ease: 'power1.out',
       });
-
 
       const titleText = titleRef.current.textContent;
       titleRef.current.textContent = '';
@@ -82,7 +79,6 @@ const Header = ({ data }) => {
         },
       });
 
-
       gsap.fromTo(
         Array.from(descriptionRef.current.children),
         { opacity: 0, y: 20 },
@@ -97,6 +93,10 @@ const Header = ({ data }) => {
       );
     }
   }, [data]);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <div
@@ -117,7 +117,7 @@ const Header = ({ data }) => {
         {data.title || data.name || data.original_title || data.original_name}
       </h1>
       <p ref={descriptionRef} className="text-zinc-300 font-semibold text-lg w-[60%] font-jose2">
-        {data.overview.slice(0, 300)}...{' '}
+        {data.overview?.slice(0, 300)}...{' '}
         <Link to={`${data.media_type}/details/${data.id}`} className="text-blue-500 ml-1">
           more
         </Link>
@@ -153,7 +153,7 @@ Header.propTypes = {
     overview: PropTypes.string,
     media_type: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default Header;

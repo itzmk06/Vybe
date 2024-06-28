@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import 'remixicon/fonts/remixicon.css';
 import './SideNav.css';
+import { toast } from 'react-hot-toast';
 
 function SideNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,7 @@ function SideNav() {
   };
 
   const handleLogout = () => {
+    toast.success('Successfully logged out');
     navigate('/myspace');
     console.log('Logged out');
     closeSidebar();
@@ -85,7 +87,7 @@ function SideNav() {
       <div className={`backdrop ${isOpen ? 'visible' : ''}`} onClick={closeSidebar}></div>
       <div ref={sidebarRef} className={`navChange ${isOpen ? 'open' : ''}`}>
         <div className="header">
-          <a href="https://seven-mirrors-bake.loca.lt" target="_blank" rel="noopener noreferrer">
+          <a href="https://great-taxes-cheat.loca.lt" target="_blank" rel="noopener noreferrer">
             <h1 className='logo p-4 flex items-center'>
               <i className="ml-[-6%] fi fi-sr-play-alt text-[#009FFD] text-3xl rounded-lg"></i>
               <span className='ml-3 font-jose1 text-3xl'>Vybe</span>
@@ -93,20 +95,10 @@ function SideNav() {
           </a>
         </div>
         <nav className='flex flex-col gap-3 mt-4 text-lg font-bold'>
-          <Link to={'/myspace'} className={`nav-item ${isActive('/myspace') ? 'active' : ''}`} onClick={closeSidebar}>
-            <i className="ri-account-circle-fill text-2xl mr-3"></i>
-            <span className="nav-text">My Space</span>
-            {isActive('/myspace') && (
-              <div className="green-dot-container">
-                <span className="green-dot"></span>
-                <span className="ripple"></span>
-              </div>
-            )}
-          </Link>
-          <Link to={'/'} className={`nav-item ${isActive('/') ? 'active' : ''}`} onClick={closeSidebar}>
+          <Link to={'/home'} className={`nav-item ${isActive('home') ? 'active' : ''}`} onClick={closeSidebar}>
             <i className="fi fi-sr-home text-xl mr-4 ml-1 mt-[1.3%]"></i>
             <span className="nav-text">Home</span>
-            {isActive('/') && (
+            {isActive('/home') && (
               <div className="green-dot-container">
                 <span className="green-dot"></span>
                 <span className="ripple"></span>
@@ -153,7 +145,7 @@ function SideNav() {
               </div>
             )}
           </Link>
-          <Link to={'/person'} className={`nav-item ${isActive('/person') ? 'active' : ''}`} onClick={() => handleNavLinkClick('/person')}>
+          <Link to={'/person'} className={`nav-item ${isActive('/person') ? 'active' : ''}`} onClick={() =>('/person')}>
             <i className="ri-group-fill text-2xl mr-3"></i>
             <span className="nav-text">People</span>
             <span className="text-xs ml-3 bg-purple-600 px-1 py-1 rounded-lg font-black text-white">Coming Soon</span>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { toast } from 'react-hot-toast';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,20 +79,17 @@ const LoginPage = () => {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-
     tl.fromTo(
       bgImageRef.current,
       { opacity: 0, scale: 1.2 },
       { opacity: 1, scale: 1, duration: 2 }
     );
 
-
     tl.fromTo(
       loginContainerRef.current,
       { opacity: 0, y: 100 },
       { opacity: 1, y: 0, duration: 1.5 }
     );
-
 
     tl.fromTo(
       logoRef.current,
@@ -106,7 +104,6 @@ const LoginPage = () => {
       { opacity: 1, y: 0, duration: 1.5 },
       '-=1'
     );
-
 
     tl.fromTo(
       infoRef.current,
@@ -146,7 +143,6 @@ const LoginPage = () => {
       }
     );
 
-
     gsap.fromTo(
       linkRef.current,
       { opacity: 1, y: 20 },
@@ -184,25 +180,21 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/');
+    toast.success("Login successful!");
+    navigate('/home');
   };
 
   return (
     <div className="flex h-screen bg-black overflow-hidden">
-      <i
-        ref={arrowRef}
-        onClick={() => navigate(-1)}
-        className="m-3 cursor-pointer text-zinc-200 font-bold text-2xl ri-arrow-left-line hover:text-[#009FFD] transition-transform transform hover:-translate-x-1"
-      ></i>
       <div
         ref={bgImageRef}
         className="hidden lg:flex w-2/3 bg-cover bg-center relative"
         style={{
           backgroundImage:
-            'url("https://image.tmdb.org/t/p/original//ySgY4jBvZ6qchrxKnBg4M8tZp8V.jpg")',
+            'url("https://image.tmdb.org/t/p/original//nxxCPRGTzxUH8SFMrIsvMmdxHti.jpg")',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-55"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-45"></div>
         <div
           className="absolute bottom-8 left-8 text-white space-y-4 p-4 rounded-lg bg-opacity-30"
           ref={infoRef}
@@ -218,11 +210,11 @@ const LoginPage = () => {
 
       <div
         ref={loginContainerRef}
-        className="w-full lg:w-1/3 flex items-center justify-center p-6 mr-10"
+        className="w-full lg:w-1/3 flex items-center justify-center p-6"
       >
         <div className="bg-[#252833] bg-opacity-40 backdrop-blur-xs p-10 rounded-3xl shadow-2xl text-white max-w-md w-full space-y-8">
           <img
-            src="logo.svg"
+            src="public/logo.svg"
             alt="Logo"
             className="mx-auto w-[3rem] h-auto mb-6"
             ref={logoRef}

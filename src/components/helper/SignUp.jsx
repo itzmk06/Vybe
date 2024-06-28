@@ -3,16 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiArrowLeftLine } from 'react-icons/ri';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { toast } from 'react-hot-toast';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function SignUp() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/");
+    toast.success("Sign up successful!");
+    navigate("/home");
   };
 
   const formRef = useRef(null);
@@ -31,7 +34,7 @@ function SignUp() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-center bg-cover flex items-center justify-center text-white" style={{ backgroundImage: 'url("https://image.tmdb.org/t/p/original//j9eOeLlTGoHoM8BNUJVNyWmIvCi.jpg")' }} ref={bgImageRef}>
+    <div className="relative w-full h-screen bg-center bg-cover flex items-center justify-center text-white" style={{ backgroundImage: 'url("https://image.tmdb.org/t/p/original//pQcp3prf6A0x9E13pBgXZvWPtEy.jpg")' }} ref={bgImageRef}>
       <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
       <div className="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-between items-center z-20">
@@ -52,6 +55,7 @@ function SignUp() {
         <form onSubmit={handleSubmit} className="mt-6" ref={formRef}>
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
             <input type="email" placeholder="Email address" className="w-full sm:w-[76%] p-3 md:p-4 rounded-lg bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow transform group-hover:scale-105 font-semibold" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" className="w-full sm:w-[76%] p-3 md:p-4 rounded-lg bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow transform group-hover:scale-105 font-semibold" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button type="submit" className="w-full sm:w-auto px-4 py-3 md:px-6 md:py-4 rounded-lg bg-red-600 hover:bg-red-700 transition-all duration-300 transform group-hover:scale-105 font-bold shadow-lg shadow-red-500/50" ref={buttonRef}>Get Started</button>
           </div>
         </form>

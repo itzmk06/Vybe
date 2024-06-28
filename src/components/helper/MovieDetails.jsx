@@ -140,15 +140,6 @@ const MovieDetails = () => {
           >
             <i className="ri-play-circle-fill text-2xl"></i>Watch Trailer
           </Link>
-
-          <a
-            href={`https://vidsrc.to/embed/movie/${info.detail.id}`}
-            className="font-bold inline-flex items-center ml-5 gap-2 px-4 py-2 mt-4 text-blue-500 bg-gray-800 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fi fi-sr-live-alt text-2xl"></i>Vybe Now
-          </a>
         </div>
       </div>
 
