@@ -11,13 +11,16 @@ import PersonDetails from './components/helper/PersonDetails';
 import Trailer from './components/helper/Trailer';
 import MySpace from './components/MySpace';
 import SignUp from './components/helper/SignUp';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   document.title = "Vybe | Home";
   return (
     <div className='w-screen h-screen bg-[#13141A] flex font-jose'>
+      <Toaster />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<MySpace />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/trending' element={<Trending />} />
         <Route path='/popular' element={<Popular />} />
         <Route path='/movie' element={<Movie />} />
