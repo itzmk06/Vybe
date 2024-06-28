@@ -1,6 +1,5 @@
 import SideNav from "./helper/SideNav"
 import LoginPage from "./helper/Login"
-import { Link } from 'react-router-dom';
 
 function MySpace() {
   return (
@@ -12,7 +11,6 @@ function MySpace() {
           }}
           className="w-full h-full"
           >
-      <SideNav/>
       <LoginPage/>
       </div>
   )
