@@ -60,7 +60,7 @@ function TopNav() {
     }
   }, [searches]);
 
-  if (location.pathname !== '/' && window.innerWidth < 640) {
+  if (location.pathname !== '/home' && window.innerWidth < 640) {
     return null;
   }
 
